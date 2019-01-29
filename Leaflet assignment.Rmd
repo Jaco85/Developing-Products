@@ -1,0 +1,31 @@
+---
+title: "Interactive map with leaflet"
+author: "Jaco"
+date: "29-1-2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Dutch Weather Station
+
+####Set working directory and load file:
+```{r}
+setwd("/Users/jaco/Documents/datasciencecoursera/Course 10_Developing Products/Week 2")
+dataset <- read.csv('./Weerstations.csv', sep = ";", header=T)
+```
+
+```{r}
+head(dataset)
+```
+
+#### Create map
+```{r }
+library(leaflet)
+my_map <- dataset %>% leaflet() %>% addTiles () %>% addMarkers(popup = dataset$place, clusterOptions = markerClusterOptions())
+my_map
+
+```
+
